@@ -1,0 +1,24 @@
+<?php 
+//Second page
+$payment = 0;
+$loanAmount = $_REQUEST['Loan'];
+$rate = $_REQUEST['Rate'] * 0.01; //converting the rate to decimal
+$months = $_REQUEST['Months'];
+
+$interest = $_REQUEST['Rate'];
+
+//I am spacing it this way because i have trouble reading the () parenthesis
+$payment = $loanAmount * ($rate/12) *
+           (
+              pow( (1+($rate/12)),$months ) 
+              /
+              ( pow( (1+($rate/12)) ,$months) -1)
+           );
+
+print "<p>Loan Amount: $loanAmount </p>";    
+print "<p>Interest Rate: $interest %</p>";
+print "<p>Months: $months </p>";
+
+print "<br>";
+printf('Your monthly Payment is %.2f ', $payment);
+?>
