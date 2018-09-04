@@ -1,0 +1,65 @@
+# python version 3.6.2
+
+# Write a program that prints out the unique command line arguments
+# it recieves, in alphabetical order
+
+import sys
+
+print("\n")
+print("Write a program that responds to a positive integer passed on the \n"
+      " command line with the number of bits needed to express that number \n"
+      " in binary. The number can be calculated either with a logarithm \n"
+      " or by producing a binary representation and measuring its length. \n")
+
+# //////////////////////////////////////////////////////////////////////////
+# Function : functions must be placed before calling
+# //////////////////////////////////////////////////////////////////////////
+
+
+# Check to see if it is a integer
+def check(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        print("Error: You did not enter a Integer!")
+        return False
+
+
+# Binary Function
+def binary_c(n):
+    r_number = format(int(n), 'b')
+    return r_number
+
+
+# //////////////////////////////////////////////////////////////////////////
+# When Someone Enters argument
+# //////////////////////////////////////////////////////////////////////////
+
+str1 = str(sys.argv)  # getting argument list
+List2 = str1.split()  # splitting argument list
+
+# check if the second array is empty or not
+# first array is always filled
+if len(sys.argv) >= 2:
+    c_number = List2[1].strip(']')  # removing annoying characters in argument list
+    c_number = c_number.strip('\'')  # removing annoying characters in argument list
+    if check(c_number) == True:
+        new_num = int(c_number)  # converting string to int
+        b_number = binary_c(new_num)  # converting to binary
+        print("The Binary for ", c_number, " is ", b_number)
+else:
+# //////////////////////////////////////////////////////////////////////////
+# In case if someone doesn't enter argument
+# //////////////////////////////////////////////////////////////////////////
+    print("\n")
+    print("In case of Argument List Not available!")
+    person = input("Enter a integer to convert into binary:")  # gets input and saves it as a integer
+    print("\n")
+    if check(person) == True:
+        b_number = binary_c(person)
+        print("The Binary for ", person, " is ", b_number)
+
+
+# End of File
+
