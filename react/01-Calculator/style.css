@@ -1,0 +1,109 @@
+
+body{
+  
+}
+
+#root {
+	max-width: 600px;
+	margin-left:auto;	
+  margin-right:auto;
+}
+
+.calculator-frame {
+  width: 400px;
+  height: 600px;
+  font-size: 50px;
+}
+
+.c-display {
+  float: left;
+  width: 400px;
+  height: 100px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  text-align: right;
+  display: block;
+  background-color: brown;
+  color: white;
+  font-size: 80px;
+  padding-right: 20px;
+}
+
+.c-number-frame {
+  width: 300px;
+  float: left;
+  display: block;
+}
+
+.c-numbers {
+  border: 1 px solid black;
+  border-radius: 5px;
+  height: 100px;
+  width: 100px;
+  float: left;
+  display: block;
+  font-size: 50px;
+  background-color: white;
+}
+
+/* for the 0 key*/
+.c-numbers2 {
+  border: 1 px solid black;
+  border-radius: 5px;
+  width: 200px;
+  height: 100px;
+  float: left;
+  display: block;
+  font-size: 50px;
+  background-color: white;
+}
+
+.c-operator-frame {
+  width: 100px;
+  float: left;
+  display: block;
+}
+
+.c-operator {
+  border: 1 px solid black;
+  border-radius: 5px;
+  height: 70px;
+  width: 100px;
+  height: 100px;
+  float: left;
+  display: block;
+  font-size: 50px;
+  background-color: orange;
+}
+
+.c-clear {
+  border: 1 px solid black;
+  border-radius: 5px;
+  height: 100px;
+  width: 300px;
+  font-size: 50px;
+  display: block;
+  float: left;
+  background-color: lightgrey;
+}
+
+
+/* some effects here */
+.c-numbers:hover, .c-numbers2:hover, .c-operator:hover, .c-clear:hover
+{
+  opacity: 0.6;
+  color: white;
+  background-color: grey;
+  -webkit-transition: background-color 0.5s; /* Safari */
+  transition: background-color 0.5s;
+}
+
+.c-numbers:active, .c-numbers2:active, .c-operator:active, .c-clear:active
+{
+  opacity: 1;
+  color: white;
+  background-color: grey;
+}
+
+
