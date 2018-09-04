@@ -1,0 +1,103 @@
+  <?php
+  $inputfile="cis.txt";
+  $courseList = array();
+  $handle = fopen($inputfile, "r") or die("Can't open file");
+  $line = fgets($handle);
+  
+  // read file data into array.
+  while(!feof($handle)) {
+    preg_match("/^([[:digit:]]{5})(.*)CIS  ([[:digit:]]{3}[[:alpha:]]?) ([[:alnum:]]*)([[:blank:]]*)([[:alnum:]\.]*) ([[:alpha:][:space:]]{7}) ([[:alnum:]]*)  ([[:alnum:]]*)  ([[:alnum:]]*) ([[:alnum:]]*) (.*)/i", $line, $result);
+    if (count($result)==13) {
+      $newline=array();
+      $newline['CRN']=(int)$result[1];
+      $newline['SUBJ']='CIS';
+      $course=$newline['CRSE']=$result[3];
+      $newline['SEC']=$result[4];
+      $newline['UNIT']=$result[6];
+      $newline['DAYS']=$result[7];
+      $newline['START']=$result[8];
+      $newline['END']=$result[9];
+      $newline['BLDG']=$result[10];
+      $newline['ROOM']=(int)$result[11];
+      $newline['INSTRUCTOR']=trim($result[12]);
+      
+      if ($newline['CRN']>0) {
+        $emailparts=explode(',',$newline['INSTRUCTOR']);
+        if (count($emailparts)>1)
+        {
+          //trimming name, all lower case, etc...
+          $firstn = strtolower(substr(trim($emailparts[1]),0,1));
+          $lastn = strtolower(substr($emailparts[0],0,6));
+          $newline['INSTRUCTOR']= $firstn.$lastn.'@ccsf.edu';
+        }
+        if (!in_array($course, $courseList)) {
+           array_push($courseList, $course);
+           $courses[$course]=array();
+        }
+        array_push($courses[$course],$newline);
+      }
+    }//end of count if statement large
+    $line = fgets($handle);
+  } //end of while loop
+  fclose($handle);
+
+  print "Pick a class: CIS ";
+  print "<select name='course' size=1>\n";
+  if (!(isset($_POST['course']) && strlen($choice=trim($_POST['course'])))) {
+    $choice=FALSE;
+  }
+  foreach ($courseList as $course) {
+    print "<option value='$course'";
+    if ($course==$choice) print " selected='selected'";
+    print ">$course</option>";
+  }
+  print "</select>\n";
+
+  
+  function DisplayHeader($target) {
+    print "<tr>\n";
+    foreach (array_keys($target) as $key) {
+      print "<th>$key</th>\n";
+    }
+    print "</tr>\n";
+  }//end of displayheader()
+
+  
+  function DisplayRow($target) {
+    print "<tr>\n";
+    foreach (array_keys($target) as $key) {
+      if ($key == "INSTRUCTOR")
+      {
+        //print it out as a link and allowing mail to
+      print "<td><a href='mailto:$target[$key]'>$target[$key]</a></td>\n";
+      } else {
+      print "<td>$target[$key]</td>\n";
+      }
+    }
+    print "</tr>\n";
+  }//end of displayrow()
+?>
+
+
+
+<!-- Displays the table -->
+<?php
+if ($choice) {
+  $now = date("Y-m-d H:m:s");
+  $handle = fopen("lookuplog.txt", "a");
+  fwrite($handle, "$now\t$course\n");
+  fclose($handle);
+
+  if (isset($courses[$choice])) {
+    print "<table border=1 width='95%'>\n";
+    DisplayHeader($courses[$choice][0]);
+    
+    foreach ($courses[$choice] as $line) {
+      DisplayRow($line);
+    }
+  
+    print "</table>\n";}
+  } else if (strlen($choice)) {
+    print "<p>No data for $choice</p>";
+  } else print "<p>No Selection</p>";
+?>

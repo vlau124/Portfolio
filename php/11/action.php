@@ -1,0 +1,250 @@
+<?php
+// each step will be labeled in order step1 step2 etc..
+
+//-------------------- Step1: Open connections to prepare to access database -----------------------------------------
+//we do this so we can access it globally when needed
+//--------------------------------CHANGE VARIABLES WHEN USING A DIFFERENT DATABASE
+$servername = "twinpeaks";
+$username = "vlau5";
+$password = "jul2090.vl"; //no password for me
+$dbname = "northwoods"; //name of database
+
+$table_s = "student"; //name of student table in database
+$table_f = "faculty"; //name of faculty table in database
+
+$table_c = "course_section";
+$table_courses = "courses";
+$table_loc = "location";
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+//------------------------------------------------------------------------------
+
+//check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully.";
+
+display_student_faculty($conn, $table_s, $table_f);
+
+//default term select = 4
+$termselect = 4;
+  echo <<<ENDINPUT
+  <hr>
+<form enctype='multipart/form-data' action='#' method='POST' class="container">
+  Select a Term:
+  <select name="termselect">
+    <option value="4">Term 4</option>
+    <option value="5">Term 5</option>
+    <option value="6">Term 6</option>
+  </select>
+  <button type='submit' name='submit1'>Submit</button>
+</form>
+  
+ENDINPUT;
+
+if (isset($_POST['submit1']))
+{
+  $termselect = $_REQUEST['termselect'];
+}
+
+
+display_schedule($conn, $table_s, $table_f, $table_c, $table_courses, $table_loc, $termselect);
+
+
+
+
+
+
+
+
+
+
+//----------------------------------Display Student and Faculty
+function display_student_faculty($conn, $table_s, $table_f)
+{
+  // ----------Accessing the database --------
+  //student is the table name
+  $sql = "SELECT s_id, s_last, s_first, s_last, s_mi, s_address,
+    s_city, s_state, s_zip, s_phone, s_class, s_dob, s_pin, f_id
+    FROM $table_s";
+  $result = $conn->query($sql);
+  
+  $sql2 = "SELECT f_id, f_last, f_first, f_mi, loc_id, f_phone, f_rank, f_pin, f_image
+    FROM $table_f";
+  $result2 = $conn->query($sql2);
+
+  // ---------displaying data in a table -----------
+  echo "<table>"; //starting table tag
+  echo "<h2 style='text-align:center'>Part1: Displaying Information from Multiple Tables</h2>";
+  echo "<tr>
+          <td>Student</td>
+          <td>Faculty Advisor</td>
+          <td>Advisor Phone Number</td>
+          <td>id</td>
+        </tr>";
+  //dont display if database is null
+  if ($result !=  null && $result->num_rows > 0 ) {
+      // output data of each row
+      while($row = $result->fetch_assoc())
+      {
+        $facultyid = $row["f_id"];
+        $facultyname = "";
+        $facultyphone = "";
+        
+        //Find the matching id, name and phone number
+        $sqlfind="SELECT f_id, f_first, f_mi, f_last, f_phone FROM $table_f ORDER BY f_id";
+
+        if ($resultfind=mysqli_query($conn,$sqlfind))
+        {
+          // Fetch one and one row
+          while ($rowfind=mysqli_fetch_row($resultfind))
+          {
+          //printf ("%s (%s)\n",$row[0],$row[1]);
+            if ($rowfind[0] == $facultyid)
+            {
+              //add the first middle and last name together
+              $facultyname = $rowfind[1] . " " . $rowfind[2] . " " . $rowfind[3];
+              $facultyphone = $rowfind[4];
+            }
+          }
+          // Free result set
+          mysqli_free_result($resultfind);
+        }
+        
+        echo "<tr>".
+        "<td>". $row["s_first"] . " " . $row["s_mi"] . " " . $row["s_last"] . "</td>".
+        "<td>". $facultyname . "</td>".
+        "<td>". $facultyphone . "</td>".
+        "<td>". $row["f_id"] . "</td>".
+        "</tr>";
+      }
+  } else {
+      echo "<tr><td>0 results</td></tr>";
+  }
+  echo "</table>";
+}//end of Display Student
+
+
+
+//----------------------------------------------------------
+
+
+
+
+
+//----------------------------------Display Schedule
+function display_schedule($conn, $table_s, $table_f, $table_c, $table_courses, $table_loc, $termselect)
+{
+  // ----------Accessing the database --------
+  //student is the table name
+  $sql = "SELECT s_id, s_last, s_first, s_last, s_mi, s_address,
+    s_city, s_state, s_zip, s_phone, s_class, s_dob, s_pin, f_id
+    FROM $table_s";
+  $result = $conn->query($sql);
+  
+  $sql2 = "SELECT f_id, f_last, f_first, f_mi, loc_id, f_phone, f_rank, f_pin, f_image
+    FROM $table_f";
+  $result2 = $conn->query($sql2);
+  
+  $sql3 = "SELECT course_id, term_id, loc_id, f_id
+    FROM $table_c";
+  $result3 = $conn->query($sql3);
+
+  // ---------displaying data in a table -----------
+  echo "<table>"; //starting table tag
+  echo "<h2 style='text-align:center'>Part1: Displaying Information from Multiple Tables</h2>";
+  echo "<p style='text-align:center'>I could not find certain things like day, time, and etc... in the tables </p>";
+  echo "<tr>
+          <td>Term</td>
+          <td>Course</td>
+          <td>Section</td>
+          <td>Instructor</td>
+          <td>Location</td>
+          <td>Days</td>
+          <td>Start Time</td>
+        </tr>";
+  //dont display if database is null
+  if ($result3 !=  null && $result3->num_rows > 0 ) {
+      // output data of each row
+      while($row = $result3->fetch_assoc())
+      {
+        $facultyid = $row["f_id"];
+        $facultyname = "";
+        
+        //Find the matching id, name
+        $sqlfind="SELECT f_id, f_first, f_mi, f_last FROM $table_f ORDER BY f_id";
+
+        if ($resultfind=mysqli_query($conn,$sqlfind))
+        {
+          // Fetch one and one row
+          while ($rowfind=mysqli_fetch_row($resultfind))
+          {
+          //printf ("%s (%s)\n",$row[0],$row[1]);
+            if ($rowfind[0] == $facultyid)
+            {
+              //add the first middle and last name together
+              $facultyname = $rowfind[1] . " " . $rowfind[2] . " " . $rowfind[3];
+            }
+          }
+          // Free result set
+          mysqli_free_result($resultfind);
+        }
+        
+      //Find the matching term, name----------i dont know the id....---------------------------------------
+        $termid = $row["term_id"];
+        $termname = "";
+        
+        $sqlfind="SELECT term_id, term FROM $table_courses ORDER BY term_id";
+
+        if ($resultfind=mysqli_query($conn,$sqlfind))
+        {
+          // Fetch one and one row
+          while ($rowfind=mysqli_fetch_row($resultfind))
+          {
+          //printf ("%s (%s)\n",$row[0],$row[1]);
+            if ($rowfind[0] == $termid)
+            {
+              //add the first middle and last name together
+              $termname = $rowfind[1];
+            }
+          }
+          // Free result set
+          mysqli_free_result($resultfind);
+        }
+        
+        //only print this out if the selected term is correct
+        if ($termselect == $row["term_id"])
+        {
+        echo "<tr>".
+        "<td>". $row["term_id"] . "</td>".
+        //"<td>". $termname . "</td>".
+        "<td>". $row["course_id"] . "</td>".
+        "<td>". "section id" . "</td>".
+        "<td>". $facultyname . "</td>".
+        "<td>". $row["loc_id"] . "</td>".
+        "<td>". "day" . "</td>".
+        "<td>". "time" . "</td>".
+        "</tr>"
+        ;
+        }
+      }
+  } else {
+      echo "<tr><td>0 results</td></tr>";
+  }
+  echo "</table>";
+}//end of Display Student
+
+
+//--------------------------------------------------------------------------------
+//erase these variables so they wont show up in print_r(get_all_vars()) later on.
+
+unset($servername, $username, $password, $dbname, $conn,
+ $table_s, $table_f, $table_c, $table_courses, $table_loc)
+
+
+// close the sql database connection
+$conn->close();
+ 
+?>

@@ -1,0 +1,35 @@
+mysql> describe student;
++-----------+-------------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+----------------+
+| s_id | int(11) | NO | PRI | NULL | auto_increment |
+| s_last | varchar(50) | YES | | NULL | |
+| s_first | varchar(50) | YES | | NULL | |
+| s_mi | varchar(50) | YES | | NULL | |
+| s_address | varchar(50) | YES | | NULL | |
+| s_city | varchar(50) | YES | | NULL | |
+| s_state | varchar(50) | YES | | NULL | |
+| s_zip | varchar(50) | YES | | NULL | |
+| s_phone | varchar(50) | YES | | NULL | |
+| s_class | varchar(50) | YES | | NULL | |
+| s_dob | date | YES | | NULL | |
+| s_pin | varchar(50) | YES | | NULL | |
+| f_id | int(11) | YES | | NULL | |
++-----------+-------------+------+-----+---------+----------------+
+13 rows in set (0.00 sec)
+
+mysql> describe faculty;
++---------+-------------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+----------------+
+| f_id | int(11) | NO | PRI | NULL | auto_increment |
+| f_last | varchar(50) | YES | | NULL | |
+| f_first | varchar(50) | YES | | NULL | |
+| f_mi | char(1) | YES | | NULL | |
+| loc_id | int(11) | YES | | NULL | |
+| f_phone | varchar(20) | YES | | NULL | |
+| f_rank | varchar(50) | YES | | NULL | |
+| f_pin | int(11) | YES | | NULL | |
+| f_image | varchar(50) | YES | | NULL | |
++---------+-------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
