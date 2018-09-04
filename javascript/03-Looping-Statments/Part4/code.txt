@@ -1,0 +1,72 @@
+<script>
+var checkcount = 0;
+function process()
+{
+  var price = [];
+  var quantity = [];
+  var amount = [];
+  var total = 0;
+  var price_val = 0;
+  
+  price[0] = 2.98;
+  price[1] = 4.50;
+  price[2] = 9.98;
+  price[3] = 4.49;
+  price[4] = 6.87;
+  
+  //check count is for displaying the warning and clearing the warning
+  checkcount = 0;
+  
+  for(x = 0; x < 5; x++)
+  {
+    quantity[x] = parseInt(document.forms["myform"].elements["qty" + (x + 1)].value);
+    check(quantity[x]);
+    
+    //amount[x] = price[x] * quantity[x];
+    //teacher wants me to use a switch statement, but i already did it without it...
+    // i guess ill do it again with the case statement
+    switch (x)
+    {
+      case 0:
+        price_val = price[x];
+        break; 
+      case 1:
+        price_val = price[x];
+        break; 
+      case 2:
+        price_val = price[x];
+        break;  
+      case 3:
+        price_val = price[x];
+        break; 
+      case 4:
+        price_val = price[x];
+        break; 
+    default:
+    valInput = false;
+    }
+    
+    amount[x] = price_val * quantity[x];
+    //printing values
+    document.forms["myform"].elements["a" + (x + 1)].value = amount[x];
+    //runing total
+    total += amount[x]; 
+  }
+  
+  //printing values
+  document.forms["myform"].elements["ts"].value = total.toFixed(2);
+
+}// end of process()
+
+
+function check(digits)
+{
+  if (isNaN(digits) )
+  {
+  checkcount++;
+  document.getElementById("text1").innerHTML = "<h2>PLEASE ENTER A VALID INPUT! Numbers only</h2>";
+  } else if (checkcount == 0) {// if all the numbers are correct then clear the warning
+  document.getElementById("text1").innerHTML = "<p></p>";
+  }
+}
+</script>

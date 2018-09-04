@@ -1,0 +1,52 @@
+<!-- Toggle Directions-->
+<script> 
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $("#panel").slideToggle("slow");
+    });
+});
+</script>
+
+<!-- Grade Calculations -->
+<script>
+function process()
+{
+  var final_average, hwAvg, midExam, finalExam, ACR,LetterScore;
+  
+  //initializing variables
+  hwAvg = parseInt(document.forms["myform"].elements["Homework"].value);
+  midExam = parseInt(document.forms["myform"].elements["Midterm"].value);
+  finalExam = parseInt(document.forms["myform"].elements["Final"].value);
+  ACR = parseInt(document.forms["myform"].elements["ACR"].value);
+  final_average = 0;
+  LetterScore = 0;
+  
+  //If someone doesnt enter a number. Produce a warning statement
+  if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(ACR))
+  {
+  document.getElementById("text4").innerHTML = "<h2>PLEASE ENTER A VALID INPUT!</h2>";
+  } else {
+  document.getElementById("text4").innerHTML = "<p></p>";
+  }
+
+  final_average = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * ACR);
+  
+  //Calculating Letter Grade
+  if(final_average > 100){ LetterScore = "This person cheated!"; }
+  if(final_average >= 90 && final_average <= 100){ LetterScore = "A"; }
+  if(final_average >= 80 && final_average <= 89){ LetterScore = "B"; }
+  if(final_average >= 70 && final_average <= 79){ LetterScore = "C"; }
+  if(final_average >= 60 && final_average <= 69){ LetterScore = "D"; }
+  if(final_average <= 59){ LetterScore = "F"; }
+  
+  document.getElementById("text1").innerHTML = "<p>Student's Final Average: " + Math.round(final_average) + "</p>";
+  document.getElementById("text2").innerHTML = "<p>Letter Grade: " + LetterScore + "</p>";
+  
+  //Does the student need to retake the class?
+  if(LetterScore == "D" || LetterScore == "F")
+  {
+  document.getElementById("text3").innerHTML = "<p>Student must retake the course</p>";
+  }
+  
+}
+</script>

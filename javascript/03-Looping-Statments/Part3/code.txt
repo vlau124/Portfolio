@@ -1,0 +1,31 @@
+<script>
+var principal = 1000;
+
+/*
+//this for loop doesnt work for some unknown reason
+//code is correct, so something else might be happening
+
+for(x = 5; x < 10; x++)
+{
+  calculate(x);
+}
+*/
+
+calculate(5);
+calculate(6);
+calculate(7);
+calculate(8);
+calculate(9);
+calculate(10);
+
+function calculate(percent)
+{
+  var interest = 1 + (percent * 0.01);
+  
+  for(x = 0; x < 10; x++)
+  {
+    var amount = principal * Math.pow(interest, x);
+    document.getElementById( percent + "deposit" + (x+1) ).innerHTML = amount.toFixed(2);
+  }
+}
+</script>

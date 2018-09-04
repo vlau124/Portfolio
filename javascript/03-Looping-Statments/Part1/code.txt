@@ -1,0 +1,40 @@
+<!-- Part 1a -->
+<script>
+var result1 = 1;
+var result2 = 0;
+
+for (x=5; x<=20; x+=3)
+{
+  result1 = result1 * x;
+  result2 = result2 + x;
+}
+
+document.getElementById("text1").innerHTML = "5 * 8 * 11 * 14 * 17 * 20 = " + result1;
+document.getElementById("text2").innerHTML = "5 + 8 + 11 + 14 + 17 + 20 = " + result2;
+</script>
+
+
+<!-- Part 1b -->
+<script>
+var result1 = 1;
+var result2 = 0;
+var x = 3;
+
+while (x <= 31)
+{
+  result1 = result1 * x;
+  result2 = result2 + x;
+  x+=4;
+}
+
+document.getElementById("text3").innerHTML = "3 * 7 * 11 * 15 * 19 * 23 * 27 * 31  = " + result1;
+document.getElementById("text4").innerHTML = "3 + 7 + 11 + 15 + 19 + 23 + 27 + 31  = " + result2;
+</script>
+  
+
+<!-- Jquery Draggable -->
+<script>
+$( function() {
+  $( "#draggable" ).draggable();
+} );
+</script>

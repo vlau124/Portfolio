@@ -1,0 +1,60 @@
+<!-- Jquery Dialog Box -->
+<script>
+$( function() {
+  $( "#dialog" ).dialog({
+    autoOpen: false,
+    show: {
+      effect: "blind",
+      duration: 1000
+    },
+    hide: {
+      effect: "explode",
+      duration: 1000
+    }
+  });
+
+  $( "#opener" ).on( "click", function() {
+    $( "#dialog" ).dialog( "open" );
+  });
+} );
+</script>
+
+
+<!-- Check for Palindrome -->
+<script>
+function process()
+{
+  var digits, length;
+  
+  //initializing variables
+  digits = parseInt(document.forms["myform"].elements["digits"].value);
+  
+  //If someone doesnt enter a number. Produce a warning statement
+  if (isNaN(digits) )
+  {
+  document.getElementById("text2").innerHTML = "<h2>PLEASE ENTER A VALID INPUT! Numbers only</h2>";
+  } else {
+  document.getElementById("text2").innerHTML = "<p></p>";
+  }
+  
+  
+  //Check to see if user entered 5 digits
+  var str = digits.toString();
+  dlength = str.length;
+  
+  if( dlength != 5)
+  {
+  document.getElementById("text3").innerHTML = "<h2>The number you inputed isn't 5 digits</h2>";
+  } else { 
+    //Check for palidrome
+    if(str.charAt(0) == str.charAt(4) && str.charAt(1) == str.charAt(3))
+    {
+    document.getElementById("text1").innerHTML = "<h3>Congrats the number you entered " + digits + " is a Palidrome!</h2>";
+    document.getElementById("text3").innerHTML = "";
+    } else {
+    document.getElementById("text1").innerHTML = "<h2>I am sorry the number " + digits + " is not a Palidrome</h2>";
+    }
+  }
+  
+}
+</script>

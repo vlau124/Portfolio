@@ -1,0 +1,73 @@
+<!-- Tool tip -->
+<script>
+  $( function() {
+    $( document ).tooltip();
+  } );
+</script>
+
+
+<!-- Change the background of all <p> paragraph elements to black! -->
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("p").css({
+            "color": "white",
+            "background-color": "#000000",
+            "font-family": "Arial",
+            "font-size": "20px",
+            "padding": "5px"
+        });
+    });
+});
+</script>
+
+
+<!-- Customer store credit calculation -->
+<script>
+function process()
+{
+  var acc, balance, item_charge, credit_applied, allowed_credit, 
+    new_balance, available_credit;
+  
+  //Initializing Variables
+  acc = parseInt(document.forms["myform"].elements["acc"].value);
+  balance = parseInt(document.forms["myform"].elements["balance"].value);
+  item_charge = parseInt(document.forms["myform"].elements["item_charge"].value);
+  credit_applied = parseInt(document.forms["myform"].elements["credit_applied"].value);
+  allowed_credit = parseInt(document.forms["myform"].elements["allowed_credit"].value);
+  new_balance = 0;
+  Total_credits_month = 0;
+  available_credit = 0;
+  
+  //If someone doesnt enter a number. Produce a warning statement
+  if (isNaN(acc) || isNaN(balance) || isNaN(item_charge) || isNaN(credit_applied) || isNaN(allowed_credit) )
+  {
+  document.getElementById("text11").innerHTML = "<h2>PLEASE ENTER A VALID INPUT!</h2>";
+  } else {
+  document.getElementById("text11").innerHTML = "<p></p>";
+  }
+  
+  //Math Here
+  new_balance = balance + item_charge - credit_applied;
+  available_credit = allowed_credit - new_balance;
+  
+  //Writing Output
+  document.getElementById("text1").innerHTML = "<p>Credit Account Summary Account Number: " + acc +"</p>";
+  document.getElementById("text2").innerHTML = "<p>Credit Limit: " + allowed_credit + "</p>";
+  document.getElementById("text3").innerHTML = "<p>Balance at beginning of month: " + balance +"</p>";
+  document.getElementById("text4").innerHTML = "<p>Total amount charged this month: " + item_charge + "</p>";
+  document.getElementById("text5").innerHTML = "<p>Total amount of credits this month: " + credit_applied + "</p>";
+  document.getElementById("text6").innerHTML = "<p>Summary: The new balance is: " + new_balance + "</p>";
+  
+  if(available_credit >=0)
+  {
+    document.getElementById("text7").innerHTML = "<p>Credit available is: " + available_credit + "</p>";
+  }
+  
+  if(available_credit < 0)
+  {
+  document.getElementById("text7").innerHTML = "<p>Credit limit exceeded by: " + (available_credit * -1) + "</p>";
+  }
+
+}
+</script>

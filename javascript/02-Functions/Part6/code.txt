@@ -1,0 +1,94 @@
+<script>
+var global = 0;
+var global_num1 = 0;
+var global_num2 = 0;
+var global_solution = 0;
+
+function process(val)
+{
+  var user_answer;
+  
+  /*  Statement1
+  global = 0
+  change start button to next
+  Generate number and store them 
+  change directions to question
+  Reset answer box
+  */
+  if(global == 0)
+  {
+    document.getElementById("S").value = "Next => ";
+    
+    global_num1 = parseInt(Math.random()*10);
+    global_num2 = parseInt(Math.random()*10);
+    global_solution = global_num1 * global_num2;
+    
+    document.getElementById("Directions").innerHTML = "How much is " + global_num1 + " times " + global_num2 + "?";
+    document.getElementById("Answer").value = "";
+  }
+  
+  
+  /*  Statement2
+  global = 1
+  user inputs answer and press next
+  grab answer from user
+  check if answer is a number
+  check if answer is correct
+  
+  */
+  if (global == 1)
+  {
+    user_answer = parseInt(document.forms["myform"].elements["Answer"].value);
+    
+    if (isNaN(user_answer) )
+    {
+      document.getElementById("text2").innerHTML = "<h2>PLEASE ENTER A VALID INPUT! Numbers only</h2>";
+      document.getElementById("Answer").value = "";
+    } else {
+      document.getElementById("text2").innerHTML = "<p></p>";
+    }
+    
+    if (user_answer == global_solution)
+    {
+      document.getElementById("Directions").innerHTML = "Correct! Press Next to continue or Reset to stop";
+      document.getElementById("h2").innerHTML = "";
+      document.getElementById("Answer").value = "";
+      //we cannot start back at 0 so start at 1 to get other reset statement
+      global = 1
+    }
+    
+    if (user_answer != global_solution)
+    {
+      document.getElementById("h2").innerHTML = "I am sorry that answer is incorrect. Try again!";
+      document.getElementById("Answer").value = "";
+      //loop back to this statement2
+      global = 0;
+    }
+  }
+  
+  /*  Statement3
+  global = 2
+  reset answer box
+  generate numbers
+  generate next question
+  generate new answer
+  */
+  if (global == 2)
+  {
+    document.getElementById("S").value = "Next => ";
+    
+    global_num1 = parseInt(Math.random()*10);
+    global_num2 = parseInt(Math.random()*10);
+    global_solution = global_num1 * global_num2;
+    
+    document.getElementById("Directions").innerHTML = "How much is " + global_num1 + " times " + global_num2 + "?";
+    document.getElementById("Answer").value = "";
+    //loop back to other statement2
+    global = 0;
+  }
+  
+  //cannot get global back to 0 with this statement.
+  global = global + 1;
+
+}
+</script>

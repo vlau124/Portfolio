@@ -1,0 +1,85 @@
+<script>
+function process()
+{
+  var choice = parseInt(document.forms["myform"].elements["num"].value);
+  var open1;
+  var open2;
+  var superstr;
+
+  //we are using jquery to check for valid numbers instead
+  //check(choice);
+  switch (choice)
+    {
+      case 1:
+        var open1 = '<ul style="list-style-type:square">';
+        var open2 = '</ul>';
+        break; 
+      case 2:
+        var open1 = '<ol>';
+        var open2 = '</ol>';
+        break; 
+      case 3:
+        var open1 = '<ol type="A">'; //why doesnt this statement work
+        //var open1 = '<ol style="list-style-type: upper-alpha;">';
+        var open2 = '</ol>';
+        break;  
+    default:
+    valInput = false;
+    }
+    
+    //It only works if we combine the strings together as 1 whole string
+    //We cannot add strings together separately and then print it out.
+    writelist2(open1, open2);
+    
+    //writelist(open1, open2);
+    //document.getElementById("listme").innerHTML = '<ul style="list-style-type:square"><li>List item ' + 1 + '</li></ul>';
+    //document.getElementById("listme").innerHTML += '</ol>';
+}//end of process()
+
+
+
+//check for valid digits
+function check(digits)
+{
+  if (isNaN(digits) || digits ==0 )
+  {
+  document.getElementById("text1").innerHTML = "<h2>PLEASE ENTER A VALID INPUT!<br> Numbers 1-3 only</h2>";
+  } else {// if all the numbers are correct then clear the warning
+  document.getElementById("text1").innerHTML = "<p></p>";
+  }
+}//end of check
+
+
+
+//Glueing all the strings together and printing them out
+function writelist(str1, str2)
+{
+  var str3;
+  document.getElementById("listme").innerHTML = "<h3>Order Number List</h3>";
+  document.getElementById("listme").innerHTML += str1;
+  for(x = 0; x < 3; x++)
+  {
+    str3 = "<li>List item " + x + "</li>";
+    document.getElementById("listme").innerHTML += str3;
+  }
+  document.getElementById("listme").innerHTML += str2;
+}//end of writelist
+
+
+
+//it only works if its added together as 1 whole string you cant add it on to it separately
+function writelist2(str1, str2)
+{
+  var str3;
+  document.getElementById("listme").innerHTML = "<h3>Order Number List</h3>";
+  superstr = str1;
+  for(x = 0; x < 3; x++)
+  {
+    str3 = "<li>List item " + x + "</li>";
+    superstr = superstr + str3;
+  }
+  superstr = superstr + str2;
+  document.getElementById("listme").innerHTML = superstr;
+}//end of writelist2
+
+</script>

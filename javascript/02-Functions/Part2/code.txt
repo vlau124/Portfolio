@@ -1,0 +1,74 @@
+<!-- Tool Tip -->
+<script>
+$( function() {
+  $( document ).tooltip();
+} );
+</script>
+
+
+<!-- Weekly Sales & Earnings Calculations -->
+<script>
+function process()
+{
+  var name, item1, item2, item3, item4, price1, price2, price3, price4, amount1, amount2, amount3, amount4, amount_sold, earnings;
+  
+  //initializing variables
+  name = document.forms["myform"].elements["sp"].value;
+  item1 = parseInt(document.forms["myform"].elements["num_item1"].value);
+  item2 = parseInt(document.forms["myform"].elements["num_item2"].value);
+  item3 = parseInt(document.forms["myform"].elements["num_item3"].value);
+  item4 = parseInt(document.forms["myform"].elements["num_item4"].value);
+  
+  //If someone doesnt enter a number. Produce a warning statement
+  if (isNaN(item1) || isNaN(item2) || isNaN(item3) || isNaN(item4))
+  {
+  document.getElementById("text4").innerHTML = "<h2>PLEASE ENTER A VALID INPUT!</h2>";
+  } else {
+  document.getElementById("text4").innerHTML = "<p></p>";
+  }
+  
+  if (name == "")
+  {
+  document.getElementById("text4").innerHTML = "<h2>NAME MISSING. Please Input the person's name</h2>";
+  } else {
+  document.getElementById("text4").innerHTML = "<p></p>";
+  }
+  
+  //continue initializing variables
+  price1 = 239.99;
+  price2 = 129.75;
+  price3 = 99.95;
+  price4 = 350.89;
+  
+  amount1 = 0;
+  amount2 = 0;
+  amount3 = 0; 
+  amount4 = 0;
+  amount_sold = 0;
+  earnings = 0;
+  
+  //math here
+  amount1 = item1 * price1;
+  amount2 = item2 * price2;
+  amount3 = item3 * price3;
+  amount4 = item4 * price4;
+  
+  amount_sold = amount1 + amount2 + amount3 + amount4;
+  earnings =  200 + (0.09 * amount_sold);
+  
+  //inputting values + rounding to the 2 decimal points
+  document.getElementById("item1").value = item1.toFixed(2);
+  document.getElementById("item2").value = item2.toFixed(2);
+  document.getElementById("item3").value = item3.toFixed(2);
+  document.getElementById("item4").value = item4.toFixed(2);
+  
+  document.getElementById("value1").value = amount1.toFixed(2);
+  document.getElementById("value2").value = amount2.toFixed(2);
+  document.getElementById("value3").value = amount3.toFixed(2);
+  document.getElementById("value4").value = amount4.toFixed(2);
+  
+  document.getElementById("total_sold").value = amount_sold.toFixed(2);
+  document.getElementById("week_earn").value = earnings.toFixed(2);
+  
+}
+</script>

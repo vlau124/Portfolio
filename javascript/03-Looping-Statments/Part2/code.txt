@@ -1,0 +1,71 @@
+<script>
+var checkcount = 0;
+function process()
+{
+  var hours = [];
+  var rate = [];
+  var employee = [];
+  
+  //Check count is for displaying the warning and clearing the warning
+  checkcount = 0;
+  //condensing all the steps together
+  for (x = 0; x < 6; x++)
+  {
+    //grabbing all the form data
+    hours[x] = parseInt(document.forms["gross_pay"].elements["hours" + (x + 1)].value);
+    rate[x] = parseInt(document.forms["gross_pay"].elements["rate" + (x + 1)].value);
+    employee[x] = x + 1;
+    
+    //check if user entered numbers correctly
+    check(hours[x]);
+    check(rate[x]);
+    check(employee[x]);
+    
+    //calculate and print the gross pay
+    calculate(hours[x], rate[x], employee[x]);
+  }
+
+}//End of process()
+
+
+//Checks to see if numbers are valid
+function check(digits)
+{
+  if (isNaN(digits) )
+  {
+  checkcount++;
+  document.getElementById("text1").innerHTML = "<h2>PLEASE ENTER A VALID INPUT! Numbers only</h2>";
+  } else if (checkcount == 0) {// if all the numbers are correct then clear the warning
+  document.getElementById("text1").innerHTML = "<p></p>";
+  }
+}
+
+//calculate the gross pay for employees
+function calculate(hoursx, ratex, employee)
+{
+  var pay = 0;
+  
+  //first 40 hours
+  if(hoursx <=40)
+  {
+    pay = hoursx * ratex;
+  }
+  
+  //over time half pay when working extra hours
+  if(hoursx > 40)
+  { 
+    pay = (40 * ratex) + ((hoursx - 40) * 1.5 * 10);
+  }
+  
+  print(hoursx, ratex, employee, pay);
+}//end of calculate()
+
+//print the results + round to the 2 decimal places
+function print(hoursx, ratex, employee, pay)
+{
+  document.forms["gross_pay"].elements["f_hours" + employee].value = hoursx;
+  document.forms["gross_pay"].elements["f_rate" + employee].value = ratex;
+  document.forms["gross_pay"].elements["gross" + employee].value = pay.toFixed(2);
+}
+
+</script>
