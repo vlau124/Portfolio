@@ -1,0 +1,45 @@
+<script>
+//Initialize variables
+var earn_num = [];
+for (x = 0; x < 9; x++)
+{
+  earn_num[x] = 0;
+}
+
+function process1()
+{
+  var gross_sales = parseInt(document.getElementById("Form1").elements.namedItem("input1").value);
+  var earnings = 200 + (gross_sales * 0.09);
+  
+  html = "";
+  html += "<b>Gross Sales Entered: </b>$"+ gross_sales + "<b> Earnings: </b>$" + earnings;
+  document.getElementById("entered").innerHTML = html;
+  
+  //Deleted spaces to condensing everything
+  //Record the number of people in each bracket
+  if (earnings < 200)
+  {
+    document.getElementById("text1").innerHTML = "<b>This employee does not meet the quota! Fire Him!</b>";
+  }
+  if (earnings >= 200 && earnings < 300){ earn_num[0]++; }
+  if (earnings >= 300 && earnings < 400){ earn_num[1]++; }
+  if (earnings >= 400 && earnings < 500){ earn_num[2]++; }
+  if (earnings >= 500 && earnings < 600){ earn_num[3]++; }
+  if (earnings >= 600 && earnings < 700){ earn_num[4]++; }
+  if (earnings >= 700 && earnings < 800){ earn_num[5]++; }
+  if (earnings >= 800 && earnings < 900){ earn_num[6]++; }
+  if (earnings >= 900 && earnings < 1000){ earn_num[7]++; }
+  if (earnings >= 1000)
+  {
+  earn_num[8]++;
+  document.getElementById("text1").innerHTML = "<b>Give this guy a 1 week paid vacation before he quits his job!</b>";
+  }
+
+  //output values
+  for (x =0; x<9; x++)
+  {
+  document.getElementById("p" + x).innerHTML = earn_num[x];
+  }
+
+}
+</script>

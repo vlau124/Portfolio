@@ -1,0 +1,63 @@
+<!-- Date Time Tracking -->
+<script>
+var d = new Date();
+document.getElementById("date1").innerHTML = d.toString();
+document.getElementById("date2").innerHTML = d.toLocaleString();
+document.getElementById("date3").innerHTML = d.toUTCString();
+
+//time zone difference
+//d.getTimezoneOffset(); returns minutes
+
+/*
+Our current time is PST
+pst to utc (utc is 8 hours ahead)
+est to utc (est is 3 hours ahead of pst)
+*/
+var pst = d.getTimezoneOffset() / 60;
+var est = pst - 3;
+
+document.getElementById("time1").innerHTML = pst + " hours";
+document.getElementById("time2").innerHTML = est + " hours";
+</script>
+
+
+
+<!-- Jquery mask -->
+<script>
+$('input[name="date"]').mask('00/00/0000');
+$('input[name="postal-code"]').mask('S0S 0S0');
+$('input[name="phone-number"]').mask('(000) 000 0000');
+
+$('input[name="postal-code"]').focusout(function() {
+  $('input[name="postal-code"]').val( this.value.toUpperCase() );
+});
+</script>
+
+
+
+<!-- Area Code & Phone Number Information -->
+<script>
+function process1()
+{
+  var input1 = document.getElementById("Form1").elements.namedItem("phone-number").value;
+
+  //spliting the numbers up
+  var split = input1.split(" ");
+  
+  document.getElementById("num1").value = split[0];
+  document.getElementById("num2").value = split[1] + "-" + split[2];
+  
+  //error reporting
+  document.getElementById("text_area").innerHTML = "";
+  if (input1 == "")
+  {
+  document.getElementById("text_area").innerHTML += "Please enter a phone number! &#13;&#10;";
+  }
+  
+  if (input1.length != 14)
+  {
+  document.getElementById("text_area").innerHTML += "Please enter the full number! &#13;&#10;";
+  }
+
+}
+</script>

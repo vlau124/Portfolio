@@ -1,0 +1,44 @@
+<script>
+function process1()
+{
+  //grab form data
+  var num = parseFloat(document.querySelector('input[name = "num"]').value);
+  var rselect = document.querySelector('input[name = "round"]:checked').value;
+  
+  var new_num;
+  var html;
+  
+  switch(rselect) {
+    case "a":
+        //round to integer
+        new_num = Math.round(num);
+        html = "round to integer: ";
+        break;
+    case "b":
+        //square root then round to inter
+        new_num = Math.round( Math.sqrt(num) );
+        html = "square root then round to integer: ";
+        break;
+    case "c":
+        //round to tenths
+        new_num = (Math.round(10*num)/10).toFixed(1);
+        html = "round to tenths: ";
+        break;
+    case "d":
+        //round to hundredths
+        new_num = (Math.round(100*num)/100).toFixed(2);
+        html = "round to hundredths: ";
+        break;
+    case "e":
+        //round to thousandths
+        new_num = (Math.round(1000*num)/1000).toFixed(3);
+        html = "round to thousandths: ";
+        break;
+    default:
+        new_num = "Wrong selection..";
+  }
+
+  document.getElementById("text_area").innerHTML = html + "&#13;&#10;"  + new_num;
+
+}
+</script>

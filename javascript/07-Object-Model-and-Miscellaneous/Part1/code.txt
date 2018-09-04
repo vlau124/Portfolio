@@ -1,0 +1,38 @@
+<script>
+function process1()
+{
+  var rselect = document.querySelector('input[name = "round"]:checked').value;
+  
+  if (rselect == null)
+  {
+    document.getElementById("text1").innerHTML = "You have selected: nothing";
+  } else {
+    document.getElementById("text1").innerHTML = "You have selected: " + rselect;
+  }
+    
+  switch (rselect)
+  {
+  case "1":
+    document.getElementById("myDIV").className = "style1";
+    break;
+  case "2":
+    document.getElementById("myDIV").className = "style2";
+    break;
+  case "3":
+    document.getElementById("myDIV").className = "style3";
+    break;
+  case "4":
+    document.getElementById("myDIV").className = "style4";
+    break;
+  case "5":
+    document.getElementById("myDIV").className = "style5";
+    break;
+  case "6":
+    document.getElementById("myDIV").className = "default";
+    break;
+  default:
+    document.getElementById("myDIV").className = "default";
+  }//end of switch statement
+
+}
+</script>

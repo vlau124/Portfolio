@@ -1,0 +1,388 @@
+/* Created by Victor Lau */
+/* CSS Setup Layout for all pages*/
+{
+	margin: 0;
+	padding: 0;
+}
+
+header, footer, aside, nav, article{
+	display:block;
+}
+
+body{
+  background-color: rgba(255, 255, 255, 1) url("http://vluxcreations.com/images/BGV4 1920.png");
+}
+
+/*fonts*/
+.logo-font {
+  font-family: Arial;
+  font-size: 50px;
+  font-weight: bold;
+  width: 365px;
+}
+
+.nav-font{
+  font-size: 18px;
+}
+
+.feature-title{
+  font-size: 30px;
+  color: #fff;
+}
+
+.feature-description{
+  font-size: 20px;
+  color: #fff;
+}
+
+.project-title{
+  font-size: 25px;
+  color: #fff;
+}
+
+.project-description{
+  font-size: 15px;
+  color: #fff;
+}
+
+/*------------------- Nav Bar Override -------------*/
+.navbar-inverse {
+  background-color: rgba(255,255,255,0.5);
+  border-color: #080808;
+  -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow:    0 10px 10px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:         0 10px 10px 0 rgba(0, 0, 0, 0.15);
+}
+.navbar-inverse .navbar-brand {
+  color: #000000;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: rgba(0,0,0,0.5);
+  background-color: transparent;
+}
+.navbar-inverse .navbar-text {
+  color: #9d9d9d;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #000000;               
+  padding-top: 25px;
+  margin-top: 0px;
+  height:65px;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: rgba(0,0,0,0.5);
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: #080808; 
+}
+.navbar-inverse .navbar-nav > .disabled > a,
+.navbar-inverse .navbar-nav > .disabled > a:hover,
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+  color: #444;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+  border-color: #333;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #999;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #000000;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar:hover,
+.navbar-inverse .navbar-toggle .icon-bar:focus {
+  background-color: #fff;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #101010;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: #080808;
+}
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
+    border-color: #080808;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+    background-color: #080808;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #9d9d9d;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #fff;
+    background-color: transparent;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #fff;
+    background-color: #080808;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #444;
+    background-color: transparent;
+  }
+}
+.navbar-inverse .navbar-link {
+  color: #9d9d9d;
+}
+.navbar-inverse .navbar-link:hover {
+  color: #fff;
+}
+.navbar-inverse .btn-link {
+  color: #9d9d9d;
+}
+.navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link:focus {
+  color: #fff;
+}
+.navbar-inverse .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-inverse .btn-link:focus {
+  color: #444;
+}
+
+/*navigation sizing stuff */
+.navbar-brand {
+    height: 55px;
+    padding-top: 20px;
+}
+
+/*------------------ fixing navigation collapse -----------------------*/
+@media (max-width: 895px) {
+    .facebook {
+        margin-top: 0;
+    }
+    .navbar-brand {
+        font-size: 20px;
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-menu {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-nav {
+        float: none !important;
+        margin-top: 7px;
+    }
+    .navbar-nav > li {
+        float: none;
+    }
+    .navbar-nav > li > a {
+        border-bottom: 1px solid #000000;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
+
+@media (max-width: 395px) {
+    .navbar-brand {
+        font-size: 13px;
+    }
+}
+
+/*------------------------- global stuff ---------------------*/
+.top-margin {
+    max-width: 100%;
+    margin-top: 75px;
+}
+
+/*everyone likes extra spacing for scrolling*/
+#footer{
+  text-align:center;
+  /*margin-top:350px;*/
+  margin-top:100px;
+  height:100px;
+  border-top: 1px solid rgba(230,230,230,1);
+}
+/*footer text easier to maintain*/
+.footer-text{
+  margin-top:20px;
+}
+.footer-text span {
+  display: none;
+}
+.footer-text:after {
+  /*content: "\00a9  2016 Copyright VluxCreations";*/
+  content: "\00a9  2017 Copyright Victor";
+}
+
+video#bgvid { 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: url("http://vluxcreations.com/images/BGV4 1920.png") no-repeat;
+  background-size: cover; 
+}
+@media screen and (max-device-width: 800px) {
+    html {
+         background: url("http://vluxcreations.com/images/BGV4 1920.png") #fff no-repeat center center fixed;
+    }
+    #bgvid {
+        display: none;
+    }
+}
+
+#content-here{
+  display:block;
+  margin: auto;
+	display:block;
+	max-width:1200px;
+  padding-left:20px;  
+  padding-right:20px;
+  
+}
+
+.ice-box{
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom:2%;
+	display:block;
+	max-width:1200px;
+  background: rgba(255,255,255,0.8);
+  padding: 2%;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow:    0 10px 10px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:         0 10px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+#button-box1{
+  width:200px;
+  margin-bottom:10px;
+}
+
+.button1{
+  margin-right:auto;
+  margin-left: auto;
+  background-color: rgba(255,255,255,0.5);
+  color: black;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width:100px;
+  height:50px;
+  font-size:20px;
+}
+
+.button1:hover{
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+/*  Bootstrap Clearfix */
+/*  Tablet  */
+@media (min-width:767px){
+  /* Column clear fix */
+  .col-lg-1:nth-child(12n+1),
+  .col-lg-2:nth-child(6n+1),
+  .col-lg-3:nth-child(4n+1),
+  .col-lg-4:nth-child(3n+1),
+  .col-lg-6:nth-child(2n+1),
+  .col-md-1:nth-child(12n+1),
+  .col-md-2:nth-child(6n+1),
+  .col-md-3:nth-child(4n+1),
+  .col-md-4:nth-child(3n+1),
+  .col-md-6:nth-child(2n+1){
+    clear: none;
+  }
+  .col-sm-1:nth-child(12n+1),
+  .col-sm-2:nth-child(6n+1),
+  .col-sm-3:nth-child(4n+1),
+  .col-sm-4:nth-child(3n+1),
+  .col-sm-6:nth-child(2n+1){
+    clear: left;
+  }
+}
+
+/*  Medium Desktop  */
+@media (min-width:992px){
+  /* Column clear fix */
+  .col-lg-1:nth-child(12n+1),
+  .col-lg-2:nth-child(6n+1),
+  .col-lg-3:nth-child(4n+1),
+  .col-lg-4:nth-child(3n+1),
+  .col-lg-6:nth-child(2n+1),
+  .col-sm-1:nth-child(12n+1),
+  .col-sm-2:nth-child(6n+1),
+  .col-sm-3:nth-child(4n+1),
+  .col-sm-4:nth-child(3n+1),
+  .col-sm-6:nth-child(2n+1){
+    clear: none;
+  }
+  .col-md-1:nth-child(12n+1),
+  .col-md-2:nth-child(6n+1),
+  .col-md-3:nth-child(4n+1),
+  .col-md-4:nth-child(3n+1),
+  .col-md-6:nth-child(2n+1){
+    clear: left;
+  }
+}
+
+/*  Large Desktop  */
+@media (min-width:1200px){
+  /* Column clear fix */
+  .col-md-1:nth-child(12n+1),
+  .col-md-2:nth-child(6n+1),
+  .col-md-3:nth-child(4n+1),
+  .col-md-4:nth-child(3n+1),
+  .col-md-6:nth-child(2n+1),
+  .col-sm-1:nth-child(12n+1),
+  .col-sm-2:nth-child(6n+1),
+  .col-sm-3:nth-child(4n+1),
+  .col-sm-4:nth-child(3n+1),
+  .col-sm-6:nth-child(2n+1){
+    clear: none;
+  }
+  .col-lg-1:nth-child(12n+1),
+  .col-lg-2:nth-child(6n+1),
+  .col-lg-3:nth-child(4n+1),
+  .col-lg-4:nth-child(3n+1),
+  .col-lg-6:nth-child(2n+1){
+    clear: left;
+  }
+}

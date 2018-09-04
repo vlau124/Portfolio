@@ -1,0 +1,34 @@
+.box-frame{
+  position: relative;
+  display: block;
+  margin-bottom:10%;
+  max-width: 355px;
+  overflow: hidden;
+}
+
+.box-caption{
+  display:block;
+  position: absolute;
+  left: 0;
+  top: 72%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  /*
+  padding: 1% 2%;
+  */
+  margin-left:0%;
+  max-width: 355px;
+  width:100%;
+  height:100%;
+  opacity:1;
+}
+
+.thumbnail-gallery {
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-left:0px;
+  margin-right:0px;
+  border-radius: 0;
+}
+
+/* let bootstrap handle img-responsive and thumbnnail */

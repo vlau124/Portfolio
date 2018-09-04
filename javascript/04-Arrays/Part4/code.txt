@@ -1,0 +1,88 @@
+<script>
+var numberstore = [];
+var count = [];
+var n = 0;
+
+function process1()
+{
+  new_number = document.getElementById("Form1").elements.namedItem("input0").value;
+  var html2 = "";
+    
+  //if this is the first number entered store the number
+  if (n == 0)
+  {
+    numberstore[0] = new_number;
+    count[0] = 1;
+    html2 += "numberstore[0]" + numberstore[0] + "<br>";
+    html2 += "count[0]" + count[0] + "<br>";
+  }
+
+  if (n != 0)
+  {
+    //loop through all the numbers stored
+    var nlength = numberstore.length;
+    for (x = 0; x < nlength; x++)
+    { 
+      var bool_check = false;
+      //check if we stored the number before if we did add to the count
+      if (new_number == numberstore[x])
+      {
+        count[x]++;
+        html2 += "x=" + x + " |count[x]=" + count[x] + "  asdfasdf1<br>";
+        bool_check = true;
+      } //end of if statement
+
+      //if not then store the number
+      if (new_number != numberstore[x])
+      {
+            html2 += bool_check +"<br>";
+            bool_check = true;
+            
+        numberstore[nlength] = new_number;
+        //cannot use ++ or += 1
+        //we cant add 1 to null thats why
+        count[nlength] = 1; 
+        
+            html2 += "x=" + x + " n= "+ n + " numberstore= " + 
+            numberstore[nlength]+ " count= "+ count[nlength] 
+            + " nlength= " + nlength + "  asdf2<br>";
+      } //end of if statement
+      
+    }//end of foor loop
+    
+  }//end of n check
+  
+  n++;
+
+  document.getElementById("text3").innerHTML = html2;
+  document.getElementById("text1").innerHTML = "<b>You have entered " + n + " numbers total</b>";
+  
+  //intiating html string
+  var html = "";
+  document.getElementById("injectme").innerHTML = "";
+  
+  //creating the table
+  html += '<table border="1">';
+  html += '<tbody>';
+  html += '<tr>';
+  html += '<th>Number Entered</th>';
+  html += '<th>Duplicates</th>';
+  html += '</tr>';
+  
+
+  //loop through entire array to store html and print
+  var nlength = numberstore.length;
+  for (x = 0; x < numberstore.length; x++)
+  {
+    html += '<tr>';
+    html += '<td>' + numberstore[x] + '</td>';
+    html += '<td>' + count[x] + '</td>';
+    html += '</tr>';
+  }
+
+  html += '<tbody>';
+  html += '</table>';
+  
+  document.getElementById("injectme").innerHTML = html;
+}
+</script>

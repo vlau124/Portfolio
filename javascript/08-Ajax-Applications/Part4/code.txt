@@ -1,0 +1,62 @@
+<!-- Ajax Request -->
+<script>
+function showUser(str) {
+  if (str == "") {
+    //clear the field if input is nothing
+    document.getElementById("output1").innerHTML = "";
+    document.getElementById("output2").innerHTML = "";
+    document.getElementById("output3").innerHTML = "";
+    return;
+  } else {
+
+    //grab the state code from form input  
+    txtname=$("#txtinput").val();
+    
+    //send the form input to php to be processed
+    $.ajax({url:"getState1.php",data:{name:txtname},success: function(ajaxresult){
+
+      //split the string we get coming in
+      var splitted = ajaxresult.split(",");
+      
+      $("#ajaxrequest1").html(splitted[0]);
+      $("#ajaxrequest2").html(splitted[1]);
+      $("#ajaxrequest3").html(splitted[2]);
+      
+      document.getElementById("output0").value = splitted[0];
+      document.getElementById("output1").value = splitted[1];
+      document.getElementById("output2").value = splitted[2];
+    }});
+
+  }
+}
+</script>
+
+
+<!-- PHP (Get State Information) -->
+<?php
+// getState.php
+// Gets the form value from STATE CODE, looks uP the state name, capital, and population
+// for that state code and prints it for the form
+
+$State = array("AL" => "Alabama, Montgomery, 4369862",
+               "AK" => "Alaska, Juneau, 619500",
+               "AZ" => "Arizona, Phoenix, 4778332",
+               "AR" => "Arkansas, Little Rock, 2551373",
+               "CA" => "California, Sacramento, 3145121",
+               "CO" => "Colorado, Denver, 4056133",
+                    );
+
+// set MIMe type to text/plain
+// so that the returned value is assigned to responseText in the Ajax script
+
+header("Content-Type: text/plain");
+
+//grab form input data
+$stcode = strtoupper($_REQUEST["name"]);
+
+if (array_key_exists($stcode, $State))
+  print $State[$stcode];
+else  
+   print "state code error, state code error, state code error";
+
+?>

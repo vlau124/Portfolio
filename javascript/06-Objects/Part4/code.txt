@@ -1,0 +1,43 @@
+<script>
+function process1()
+{
+  var input1 = document.getElementById("Form1").elements.namedItem("comment").value;
+  input1 = input1.toUpperCase();
+  inputlength = input1.length;
+  var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var split = str.split("");
+  
+  //array must be initialized before use or it will be NaN
+  var char1 = [];
+  for(x = 0; x < 26; x++)
+  {
+    char1[x] = 0;
+  }
+  
+  document.getElementById("text_area").innerHTML = "";
+  for (n = 0; n < 26; n++)
+  {
+    for (x = 0; x < inputlength; x++)
+    {
+      index = input1.indexOf(split[n], x);
+      if (index != -1)
+      {
+        char1[n]++;
+        x = index;
+      } else {
+        //all occurance has been found
+        //exit loop and move on to speed up program
+        x = inputlength;
+      }
+    }//end of inner loop
+    
+    //only print out the statement if it is a character in the text
+    if (char1[n] !=0)
+    {
+    document.getElementById("text_area").innerHTML += 
+    "The Letter '"+ split[n] + "' occurred " + char1[n] + " times&#13;&#10;";
+    }
+  }//end of outer loop
+
+}
+</script>

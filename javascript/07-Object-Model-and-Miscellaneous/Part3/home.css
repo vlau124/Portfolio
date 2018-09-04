@@ -1,0 +1,89 @@
+.feature {
+}
+
+.box-large {
+    position: relative;
+    display: block;
+}
+
+.text-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 1% 2%;
+  width:100%;
+  height:100%;
+  opacity:0;
+}
+
+.text-overlay:hover {
+    opacity:1;
+}
+
+.thumbnail-gallery {
+    padding: 0;
+    border-radius: 0;
+}
+
+/* -------small boxes --------*/
+
+.box-small {
+  float:left;
+  position: relative;
+  display: block;
+}
+
+.text-overlay-small {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 1% 2%;
+  width:100%;
+  height:92%;
+  opacity:0;
+}
+
+.text-overlay-small:hover {
+    opacity:1;
+}
+
+/*---------------medium boxes ------------------*/
+.box-medium {
+  float:left;
+  position: relative;
+  display: block;
+}
+
+.text-overlay-medium {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 1% 2%;
+  width:100%;
+  height:94%;
+  opacity:0;
+}
+
+.text-overlay-medium:hover {
+    opacity:1;
+}
+
+.box-margin:not(:first-child), .bot-margin:not(:last-child) {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/* let bootstrap handle img-responsive and thumbnnail */
+
+
+
+
+
+
+

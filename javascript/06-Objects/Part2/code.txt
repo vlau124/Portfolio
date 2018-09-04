@@ -1,0 +1,75 @@
+<script>
+function process1()
+{
+  var input1 = document.getElementById("Form1").elements.namedItem("comment").value;
+  var char1 = document.getElementById("Form1").elements.namedItem("char").value;
+  
+  //change everything to uppercase to make it easy
+  input1 = input1.toUpperCase();
+  char1 = char1.toUpperCase();
+  
+  var inputlength = input1.length;
+  var occur = 0;
+  
+  //loop through entire string to find the character
+  for ( x = 0; x < inputlength; x++)
+  {
+    if (input1.charAt(x) == char1)
+    {
+      occur++;
+    }
+  }
+  
+  document.getElementById("text_area").innerHTML =
+  "The character '" + char1 + "' occured: " + occur + " times" + "&#13;&#10;";
+  
+  //If user does not enter the field
+  if (input1 == "")
+  {
+  var newText = "Please Enter Some Text!";
+  popup(newText);
+  }
+  
+  if (char1 == "")
+  {
+  var newText = "Please enter a character!";
+  popup(newText);
+  }
+  
+  if (occur == 0 && char1 != "")
+  {
+  var newText = "Search character not found in text string!&#13;&#10;" +
+    "The character: '" + char1 + "' ";
+    
+    if (input1 == "")
+    {
+    newText += "(You did not enter any text to be searched!)";
+    }
+  popup(newText);
+  }
+  
+}// End of Process1()
+
+
+// Pop up window
+function popup(newText)
+{
+  var myText = "<html>\n";
+  myText += "<head>\n";
+  myText += "<title>Popup Window</title>\n";
+  myText += "</head>\n";
+  myText += "<body>\n";
+  myText += "<div align='center'>\n";
+  myText += "<p><b>" + newText + "</b></p>\n";
+  myText += "<input type='button' value='Close Window' onclick='window.close()'>\n";
+  myText += "</div>\n";
+  myText += "</body>\n";
+  myText += "</html>";
+  
+  var newWindow = window.open("", "new_window", "top=1,left=1,width=300,height=100");
+  newWindow.focus();
+  newWindow.document.write(myText);
+  newWindow.document.close();
+
+}// End of popup()
+</script>

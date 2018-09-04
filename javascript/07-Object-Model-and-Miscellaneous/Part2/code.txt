@@ -1,0 +1,58 @@
+<!-- Login Page -->
+<script>
+$(document).ready(function() {
+  $('#open').toggle(
+      function() {
+       $('#login form').slideDown(300);
+       $(this).addClass('close');
+    },
+    function() {
+     $('#login form').fadeOut(600);
+       $(this).removeClass('close');
+      }
+  ); // end toggle
+}); // end ready
+</script>
+
+
+
+<!-- Part 2 (Second Page) -->
+<script>
+function box1() {
+  document.body.style.background = "red";
+}
+
+function box2() {
+  document.body.style.background = "yellow";
+}
+
+function box3() {
+  document.body.style.background = "green";
+}
+
+function reset() {
+  document.body.style.background = "white";
+}
+</script>
+
+
+
+<!-- PHP Page  -->
+<?php
+$password = $_REQUEST['password'];
+$username = $_REQUEST['username'];
+
+//Checks Password and Redirects Page
+if ($password == "1234" && $username == "user")
+{
+  echo "asdfasdf";
+  header("Location: part2.php", true, 301);
+  exit();
+  // both ways of redirect works
+  //$link = "part2.html";
+  //echo '<script>window.location ="'.$link.'"</script>';
+} else {
+  echo "Login Fail<br>";
+  echo '<a href="index.php">Click here to go back</a>';
+}
+?>

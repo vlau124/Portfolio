@@ -1,0 +1,76 @@
+<!-- Ajax Request -->
+<script>
+function getVote(int) {
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("poll").innerHTML=this.responseText;
+    }
+  }
+  xmlhttp.open("GET","poll_vote.php?vote="+int,true);
+  xmlhttp.send();
+}
+</script>
+
+
+
+<!-- date picker stuff -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#datepicker" ).datepicker();
+} );
+</script>
+
+
+
+
+<!-- PHP Vote -->
+<?php
+$vote = $_REQUEST['vote'];
+
+//get content of textfile
+$filename = "poll_result.txt";
+$content = file($filename);
+
+//put content in array
+$array = explode("||", $content[0]);
+$select0 = $array[0];
+$select1 = $array[1];
+$select2 = $array[2];
+$totalselect = 0;
+
+if ($vote == 0) {
+  $select0++;
+}
+if ($vote == 1) {
+  $select1++;
+}
+if ($vote == 2) {
+  $select2++;
+}
+
+$totalselect = $select0 + $select1 + $select2;
+
+//insert votes to txt file
+$insertvote = $select0."||".$select1."||".$select2;
+$fp = fopen($filename,"w");
+fputs($fp,$insertvote);
+fclose($fp);
+?>
+
+
+
+<!-- Poll Results Text File -->
+0||0||0
+
+

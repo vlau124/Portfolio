@@ -1,0 +1,68 @@
+<!-- validator -->
+<script>
+$(document).ready(function(){
+  $("#registerForm").validate();
+});
+</script>
+
+<!-- validator -->
+<script>
+$("#Form1").validate();
+</script>
+
+
+<!-- Webform Selection -->
+<script>
+function process1(myform)
+{
+  var selection = [], selectValue = [];
+  // Values are different for innerhtml and value. They are not the same
+  selection[0] = document.getElementById("Form1").elements.namedItem("input1").innerHTML;
+  selection[1] = document.getElementById("Form1").elements.namedItem("Radio1").checked;
+  selection[2] = document.getElementById("Form1").elements.namedItem("Radio2").checked;
+  selection[3] = document.getElementById("Form1").elements.namedItem("Radio3").checked;
+  selection[4] = document.getElementById("Form1").elements.namedItem("Box1").checked;
+  selection[5] = document.getElementById("Form1").elements.namedItem("Box2").checked;
+  selection[6] = document.getElementById("Form1").elements.namedItem("Box3").checked;
+  selection[7] = document.getElementById("Form1").elements.namedItem("select1").innerHTML;
+  
+  selectValue[0] = document.getElementById("Form1").elements.namedItem("input1").value;
+  selectValue[1] = document.getElementById("Form1").elements.namedItem("Radio1").value;
+  selectValue[2] = document.getElementById("Form1").elements.namedItem("Radio2").value;
+  selectValue[3] = document.getElementById("Form1").elements.namedItem("Radio3").value;
+  selectValue[4] = document.getElementById("Form1").elements.namedItem("Box1").value;
+  selectValue[5] = document.getElementById("Form1").elements.namedItem("Box2").value;
+  selectValue[6] = document.getElementById("Form1").elements.namedItem("Box3").value;
+
+  var a = document.getElementById("Form1").elements.namedItem("select1");
+  selectValue[7] = a.options[a.selectedIndex].value;
+  
+  //clearing the text
+  document.getElementById("text1").innerHTML = "";
+  
+  if (selectValue[0] != "")
+  {
+    document.getElementById("text1").innerHTML += "You have typed " + selectValue[0] + "<br>";
+  }
+  
+  // if user checked a box or input something display a message
+  for (x = 0; x <= 7; x++)
+  {
+    if (selection[x] == true)
+    {
+      document.getElementById("text1").innerHTML += "You have selected " + selectValue[x] + "<br>";
+    }
+  }
+  
+  document.getElementById("text1").innerHTML += "You Selected " + selectValue[7] + "<br>";
+}
+</script>
+
+
+<!-- Webform Links -->
+<script>
+function goToNewPage(myForm) {
+    var myDestination = myForm.destinationList.options[myForm.destinationList.selectedIndex].value;
+    window.location = myDestination;
+}
+</script>
